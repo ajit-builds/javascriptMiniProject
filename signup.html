@@ -1,116 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Signup</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Modern Interface</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg,#667eea,#764ba2);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
 
-.card{
-    background:white;
-    padding:40px;
-    width:320px;
-    border-radius:15px;
-    box-shadow:0 20px 40px rgba(0,0,0,0.25);
-    text-align:center;
-}
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.card h2{
-    margin-bottom:20px;
-}
+    .box {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
 
-.input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border-radius:8px;
-    border:1px solid #ccc;
-    font-size:16px;
-}
+      padding: 40px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
 
-.input:focus{
-    outline:none;
-    border-color:#667eea;
-    box-shadow:0 0 5px #667eea;
-}
+    h2 {
+      text-align: center;
+      color: #1a1a1a;
+      margin-bottom: 30px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
 
-.btn{
-    width:100%;
-    padding:12px;
-    background:#667eea;
-    color:white;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-    transition:0.3s;
-}
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #444;
+      display: block;
+      margin-bottom: 8px;
+    }
 
-.btn:hover{
-    background:#5563d6;
-    transform:scale(1.03);
-}
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      transition: all 0.3s ease;
+    }
 
-</style>
+    input:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    .error {
+      color: #dc2626;
+      font-size: 12px;
+      margin-top: -15px;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+
+    button {
+      width: 100%;
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    ::placeholder {
+      color: #999;
+    }
+  </style>
 </head>
+
 <body>
-
-<div class="card">
+  <div class="box">
     <h2>Create Account</h2>
-
-    <input class="input" id="username" placeholder="Username">
-    <input class="input" id="email" placeholder="Email">
-    <input class="input" id="password" type="password" placeholder="Password">
-    <input class="input" id="mobile" placeholder="Mobile Number">
-<p id="mobileError" style="color:red;font-size:14px;margin:0;"></p>
-
-    <button class="btn" onclick="signup()">Sign Up</button>
-</div>
-<script>
-function signup(){
-
-    let username=document.getElementById("username").value.trim();
-    let email=document.getElementById("email").value.trim();
-    let mobile=document.getElementById("mobile").value.trim();
-    let password=document.getElementById("password").value.trim();
-
-    let mobileError=document.getElementById("mobileError");
-    mobileError.innerText="";
-
-    // Empty field check
-    if(!username || !email || !mobile || !password){
-        alert("Please fill all fields");
-        return;
+    <label>Full Name</label>
+    <input type="text" id="name" placeholder="Enter your name" />
+    <div class="error" id="nameError"></div>
+    <label>Email Address</label>
+    <input type="email" id="email" placeholder="name@company.com" />
+    <div class="error" id="emailError"></div>
+    <label>Mobile Number</label>
+    <input type="tel" id="mobile" placeholder="10-digit mobile number" />
+    <div class="error" id="mobileError"></div>
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Min. 6 characters" />
+    <div class="error" id="passError"></div>
+    <button onclick="signup()">Sign Up</button>
+  </div>
+  <script>
+    function signup() {
+      let name = document.getElementById("name").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let mobile = document.getElementById("mobile").value.trim();
+      let password = document.getElementById("password").value;
+      let hasError = false;
+      if (name === "") {
+        document.getElementById("nameError").textContent = "Please enter your name.";
+        hasError = true;
+      }
+      if (email === "" || !email.includes("@")) {
+        document.getElementById("emailError").textContent = "Please enter a valid email.";
+        hasError = true;
+      }
+      if (mobile === "" || mobile.length !== 10) {
+        document.getElementById("mobileError").textContent = "Please enter a valid 10-digit number.";
+        hasError = true;
+      }
+      if (password.length < 6) {
+        document.getElementById("passError").textContent = "Password must be at least 6 characters.";
+        hasError = true;
+      }
+      if (!hasError) {
+        alert("You are signed up successfully! Welcome, " + name + "!");
+      }
     }
-
-    // Mobile validation (Indian numbers)
-    let mobilePattern=/^[6-9]\d{9}$/;
-
-    if(!mobilePattern.test(mobile)){
-        mobileError.innerText="Enter valid 10-digit Indian mobile number";
-        return;
-    }
-
-    // Save user
-    localStorage.setItem("user", JSON.stringify({
-        username,
-        email,
-        mobile,
-        password
-    }));
-
-    // Redirect
-    window.location.href="home.html";
-}
-</script>
+  </script>
 </body>
+
 </html>
